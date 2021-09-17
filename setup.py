@@ -1,6 +1,7 @@
 from setuptools import setup, find_packages
 from setuptools.extension import Extension
 from setuptools.command.build_ext import build_ext as _build_ext
+import sysconfig
 # from Cython.Build import cythonize
 import os
 import builtins
@@ -30,6 +31,8 @@ source_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'waterz')
 include_dirs = [
     source_dir,
     os.path.join(source_dir, 'backend'),
+    sysconfig.get_config_var('LIBDIR'),
+    sysconfig.get_config_var('INCLUDEDIR'),
     # os.path.dirname(get_python_inc()),
     # numpy.get_include(),
 ]
